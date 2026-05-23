@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PRAVDA • Eventos</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#050505;
+    color:white;
+    font-family:'Oswald', sans-serif;
+    overflow-x:hidden;
+}
+
+/* FUNDO */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background:
+    linear-gradient(rgba(0,0,0,.88), rgba(0,0,0,.92)),
+    url('https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1920');
+
+    background-size:cover;
+    background-position:center;
+
+    z-index:-3;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background:
+    radial-gradient(circle at top left, rgba(255,0,0,.14), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(255,0,0,.08), transparent 30%);
+
+    z-index:-2;
+}
+
+/* NAVBAR */
+
+nav{
+    width:100%;
+    padding:20px 7%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    position:fixed;
+    top:0;
+    z-index:999;
+
+    backdrop-filter:blur(10px);
+
+    background:rgba(0,0,0,.35);
+
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.logoText{
+    font-size:2rem;
+    color:#ff2d2d;
+    font-weight:700;
+    letter-spacing:4px;
+    text-shadow:0 0 15px rgba(255,0,0,.4);
+}
+
+.menu{
+    display:flex;
+    gap:25px;
+}
+
+.menu a{
+    text-decoration:none;
+    color:white;
+    transition:.3s;
+}
+
+.menu a:hover{
+    color:#ff2d2d;
+}
+
+/* HEADER */
+
+.header{
+    padding-top:160px;
+    padding-bottom:70px;
+
+    text-align:center;
+    padding-inline:20px;
+}
+
+.header h1{
+    font-size:5rem;
+
+    text-transform:uppercase;
+
+    margin-bottom:20px;
+
+    background:linear-gradient(to bottom,#ffffff,#ff3b3b);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.header p{
+    max-width:750px;
+    margin:auto;
+
+    color:#d0d0d0;
+
+    line-height:1.8;
+    font-size:1.2rem;
+}
+
+.quote{
+    margin-top:25px;
+    color:#ff3b3b;
+    letter-spacing:1px;
+}
+
+/* CONTAINER */
+
+.container{
+    width:min(1400px,92%);
+    margin:auto;
+    padding-bottom:100px;
+}
+
+/* GRID */
+
+.event-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+}
+
+/* CARD */
+
+.event-card{
+
+    background:rgba(255,255,255,.03);
+
+    border:1px solid rgba(255,255,255,.05);
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    transition:.4s;
+
+    position:relative;
+
+    backdrop-filter:blur(10px);
+}
+
+.event-card:hover{
+    transform:translateY(-10px);
+
+    border-color:#ff2d2d;
+
+    box-shadow:
+    0 0 25px rgba(255,0,0,.2),
+    0 0 60px rgba(255,0,0,.08);
+}
+
+/* IMAGE */
+
+.event-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+/* CONTENT */
+
+.event-content{
+    padding:25px;
+}
+
+.event-title{
+    font-size:2rem;
+    margin-bottom:15px;
+}
+
+.event-info{
+    color:#cfcfcf;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+/* STATUS */
+
+.status{
+    display:inline-block;
+
+    padding:8px 16px;
+
+    border-radius:999px;
+
+    background:#8b0000;
+
+    font-size:.9rem;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+/* BUTTON */
+
+.btn{
+    display:inline-block;
+
+    margin-top:20px;
+
+    padding:14px 24px;
+
+    border-radius:999px;
+
+    background:#d40000;
+    color:white;
+
+    text-decoration:none;
+    font-weight:700;
+
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#ff1a1a;
+
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 0 25px rgba(255,0,0,.4);
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:60px 20px;
+
+    border-top:1px solid rgba(255,255,255,.05);
+
+    color:#888;
+}
+
+.socials{
+    margin-top:25px;
+
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.socials a{
+    text-decoration:none;
+    color:white;
+
+    background:rgba(255,255,255,.04);
+
+    padding:12px 22px;
+
+    border-radius:999px;
+
+    transition:.3s;
+}
+
+.socials a:hover{
+    background:#ff2d2d;
+    transform:translateY(-4px);
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+    .header h1{
+        font-size:3rem;
+    }
+
+    .header p{
+        font-size:1rem;
+    }
+
+}
+
+@media(max-width:600px){
+
+    nav{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .header{
+        padding-top:190px;
+    }
+
+    .menu{
+        gap:15px;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logoText">
+        PRAVDA
+    </div>
+
+    <div class="menu">
+        <a href="index.html">Início</a>
+        <a href="membros.html">Membros</a>
+        <a href="eventos.html">Eventos</a>
+    </div>
+
+</nav>
+
+<!-- HEADER -->
+
+<section class="header">
+
+    <h1>
+        Eventos Pravda
+    </h1>
+
+    <p>
+        Torneios, guerras competitivas,
+        eventos especiais e momentos que marcaram
+        a história da Pravda.
+    </p>
+
+    <div class="quote">
+        “A arena é onde nascem as lendas.”
+    </div>
+
+</section>
+
+<!-- EVENTOS -->
+
+<div class="container">
+
+    <div class="event-grid">
+
+        <!-- EVENTO -->
+
+        <div class="event-card">
+
+            <img src="https://i.imgur.com/0sCoHDP.jpeg">
+
+            <div class="event-content">
+
+                <h2 class="event-title">
+                    3x3 Pravda
+                </h2>
+
+                <div class="event-info">
+                    📅 13/07/22<br>
+                    📍 Fng 4
+                </div>
+
+                <span class="status">
+                    Finalizado
+                </span>
+
+                <br>
+
+                <a href="#" class="btn">
+                    Ver Evento
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- EVENTO -->
+
+        <div class="event-card">
+
+            <img src="https://i.imgur.com/0ivAccG.png">
+
+            <div class="event-content">
+
+                <h2 class="event-title">
+                    World Fng Cup
+                </h2>
+
+                <div class="event-info">
+                    📅 13/12/2022<br>
+                    📍 Fng 4
+                </div>
+
+                <span class="status">
+                    Finalizado
+                </span>
+
+                <br>
+
+                <a href="#" class="btn">
+                    Ver Evento
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- EVENTO -->
+
+        <div class="event-card">
+
+            <img src="https://i.imgur.com/CoVh6cR.png">
+
+            <div class="event-content">
+
+                <h2 class="event-title">
+                    Fng Multiverse
+                </h2>
+
+                <div class="event-info">
+                    📅 02/02/2023<br>
+                    📍 A combinar
+                </div>
+
+                <span class="status">
+                    Finalizado
+                </span>
+
+                <br>
+
+                <a href="#" class="btn">
+                    Ver Evento
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- EVENTO -->
+
+        <div class="event-card">
+
+            <img src="https://i.imgur.com/EKgu0dD.png">
+
+            <div class="event-content">
+
+                <h2 class="event-title">
+                    Multiverse Fng 2
+                </h2>
+
+                <div class="event-info">
+                    📅 22/11/23<br>
+                    📍 A combinar
+                </div>
+
+                <span class="status">
+                    Finalizado
+                </span>
+
+                <br>
+
+                <a href="#" class="btn">
+                    Ver Evento
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- EVENTO -->
+
+        <div class="event-card">
+
+            <img src="https://i.imgur.com/kYcuwGA.png">
+
+            <div class="event-content">
+
+                <h2 class="event-title">
+                    2x2 Celestial
+                </h2>
+
+                <div class="event-info">
+                    📅 13/01/24<br>
+                    📍 Fng 1
+                </div>
+
+                <span class="status">
+                    Finalizado
+                </span>
+
+                <br>
+
+                <a href="#" class="btn">
+                    Ver Evento
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- EVENTO -->
+
+        <div class="event-card">
+
+            <img src="https://i.imgur.com/PfLm9ae.gif">
+
+            <div class="event-content">
+
+                <h2 class="event-title">
+                    Raio Gores
+                </h2>
+
+                <div class="event-info">
+                    📅 03/03/24<br>
+                    📍 Gores Away
+                </div>
+
+                <span class="status">
+                    Finalizado
+                </span>
+
+                <br>
+
+                <a href="#" class="btn">
+                    Ver Evento
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- EVENTO -->
+
+        <div class="event-card">
+
+            <img src="https://i.imgur.com/UgJKTFH.png">
+
+            <div class="event-content">
+
+                <h2 class="event-title">
+                    Foot Camp Pravda
+                </h2>
+
+                <div class="event-info">
+                    📅 16/02/24<br>
+                    📍 Foot Away
+                </div>
+
+                <span class="status">
+                    Finalizado
+                </span>
+
+                <br>
+
+                <a href="#" class="btn">
+                    Ver Evento
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- EVENTO -->
+
+        <div class="event-card">
+
+            <img src="https://i.imgur.com/URJPHD8.gif">
+
+            <div class="event-content">
+
+                <h2 class="event-title">
+                    Infclass Lotado
+                </h2>
+
+                <div class="event-info">
+                    📅 23/04/24<br>
+                    📍 Inflcass Pravda
+                </div>
+
+                <span class="status">
+                    Finalizado
+                </span>
+
+                <br>
+
+                <a href="#" class="btn">
+                    Ver Evento
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- EVENTO -->
+
+        <div class="event-card">
+
+            <img src="https://i.imgur.com/fEDLrK8_d.webp?maxwidth=760&fidelity=grand">
+
+            <div class="event-content">
+
+                <h2 class="event-title">
+                    Volley DDNet
+                </h2>
+
+                <div class="event-info">
+                    📅 06/04/24<br>
+                    📍 DDRace Brazil
+                </div>
+
+                <span class="status">
+                    Finalizado
+                </span>
+
+                <br>
+
+                <a href="#" class="btn">
+                    Ver Evento
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- EVENTO -->
+
+        <div class="event-card">
+
+            <img src="https://i.imgur.com/JfWI8Vs.png">
+
+            <div class="event-content">
+
+                <h2 class="event-title">
+                    Casamento Oi & Chrome
+                </h2>
+
+                <div class="event-info">
+                    📅 09/04/24<br>
+                    📍 DDRace Brazil
+                </div>
+
+                <span class="status">
+                    Finalizado
+                </span>
+
+                <br>
+
+                <a href="#" class="btn">
+                    Ver Evento
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        © 2026 PRAVDA — ESPORTE • DISCIPLINA • UNIÃO
+    </p>
+
+    <div class="socials">
+
+        <a href="https://discord.gg/MQHdZAFV8V" target="_blank">
+            Discord
+        </a>
+
+        <a href="#">
+            YouTube
+        </a>
+
+        <a href="#">
+            TikTok
+        </a>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
